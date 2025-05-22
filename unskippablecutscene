@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Good Knight's Sleep</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #00ffcc;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.1rem;
+      overflow: hidden;
+    }
+
+    .screen {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .button {
+      background: transparent;
+      border: 1px solid #00ffcc;
+      color: #00ffcc;
+      padding: 0.5rem 1rem;
+      margin-top: 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .fragment {
+      display: none;
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 2rem;
+      border: 1px dashed #00ffcc;
+      z-index: 1;
+    }
+
+    .fragment.show {
+      display: block;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .glitch {
+      position: relative;
+      color: #00ffcc;
+      cursor: pointer;
+    }
+
+    .glitch:hover {
+      color: #ff0066;
+      text-shadow: 1px 0 red, -1px 0 blue;
+    }
+
+    .footer-buttons {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="screen" id="intro">
+    <p>&gt; [Start Dream?]</p>
+    <p>▒▒▒ loading memory_00.txt...</p>
+    <p>▒▒▒ inserting disk...</p>
+    <p>▒▒▒ press any key to enter sleep mode</p>
+    <button class="button" onclick="startDream()">Entrer le rêve</button>
+  </div>
+
+  <!-- Fragments -->
+  <div class="fragment" id="frag1">
+    <p>Je ne sais plus ce qui est arrivé en premier :<br>
+    le sommeil ou la sauvegarde.<br><br>
+    Peut-être que j’ai cliqué “Reprendre” au lieu de dormir,<br>
+    Peut-être que j’ai quitté un rêve sans faire "Save & Quit".<br><br>
+    <span class="glitch" onclick="showFragment('frag2')">J'ai l'impression d’avoir vécu cette nuit cent fois...</span></p>
+  </div>
+
+  <div class="fragment" id="frag2">
+    <p>Eat. Sleep. Game. <span class="glitch" onclick="showFragment('frag3')">Rep—</span><br>
+    rep.. eat.. slee__eep.. gaaa—<br><br>
+    Les commandes ne répondent plus.<br>
+    Mes souvenirs sont en 8-bit.<br>
+    Je cherche une touche ESC<br>
+    mais il n’y a que "continue".</p>
+  </div>
+
+  <div class="fragment" id="frag3">
+    <p>C’était une LAN party, ou un rêve.<br>
+    Une pièce mal éclairée, jonchée de câbles et de rires étouffés.<br>
+    On partageait des chips, des cheats codes, des couvertures.<br>
+    <span class="glitch" onclick="showFragment('frag4')">J’entends encore le bruit des touches mécaniques sous nos doigts fatigués.</span></p>
+  </div>
+
+  <div class="fragment" id="frag4">
+    <p>J’ai trouvé mon armure dans un placard IKEA,<br>
+    j’ai crafté mes bottes avec des chaussons trop grands.<br><br>
+    Je suis un chevalier en mousse,<br>
+    un héros qui rêve d’un lobby où le monde fait pause.<br>
+    Mais le serveur reste en ligne,<br>
+    et même la nuit, le jeu tourne.<br><br>
+    <span class="glitch" onclick="showFragment('frag5')">[envoyer un dernier message dans le chat]</span></p>
+  </div>
+
+  <div class="fragment" id="frag5">
+    <p>On s’endormait à tour de rôle sur nos claviers.<br>
+    Des voix dans un casque, pixelisées par la fatigue.<br>
+    Une chaleur bizarre, un sentiment collectif d’être là, ensemble.<br><br>
+    C’était glitché. C’était sincère.<br>
+    <span class="glitch" onclick="showFragment('frag6')">C’était peut-être ça, la vraie magie du jeu.</span></p>
+  </div>
+
+  <div class="fragment" id="frag6">
+    <p>Maintenant, chaque nuit je respawn dans mon lit.<br>
+    Je mets mes lunettes jaunes.<br>
+    Je lance le jeu. Ou je ferme les yeux ?<br><br>
+    Les deux se confondent.<br>
+    Et si ce n’était pas un rêve ?<br>
+    Et si je n’étais qu’un fichier temporaire, sauvegardé dans une nuit LAN oubliée ?</p>
+  </div>
+
+  <div class="footer-buttons">
+    <button class="button" onclick="resetDream()">⭯ Reset Dream</button>
+    <button class="button" onclick="exitGame()">✖ Exit Game</button>
+    <button class="button" onclick="continueToMoodboard()">➤ Continue</button>
+  </div>
+
+  <script>
+    function startDream() {
+      document.getElementById("intro").style.display = "none";
+      showFragment("frag1");
+    }
+
+    function showFragment(id) {
+      document.getElementById(id).classList.add("show");
+    }
+
+    function resetDream() {
+      location.reload();
+    }
+
+    function exitGame() {
+      alert("Game exited. (You can close the tab now.)");
+    }
+
+    function continueToMoodboard() {
+      window.location.href = "moodboard.html"; // Replace with your actual moodboard path
+    }
+  </script>
+</body>
+</html>
